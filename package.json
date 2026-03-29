@@ -3,11 +3,20 @@
   "version": "0.1.0",
   "description": "Tracing, logging, and run export utilities for multi-agent workflows.",
   "type": "module",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    }
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "demo": "node --import tsx src/cli.ts",
     "inspect": "node --import tsx src/cli.ts inspect artifacts/run.json",
     "lint": "eslint . --ext .ts",
+    "prepare": "npm run build",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
