@@ -5,6 +5,8 @@
 
 Tracing and logging utilities for auditable multi-agent workflows.
 
+![Run inspector preview](./assets/run-inspector.svg)
+
 ## Why this matters
 
 Multi-agent systems fail quietly when orchestration is opaque. This package focuses on the minimum useful layer for traceability:
@@ -15,13 +17,23 @@ Multi-agent systems fail quietly when orchestration is opaque. This package focu
 - markdown and JSON exports
 - audit hooks
 - explicit run status handling
+- minimal HTML run inspector
 
 ## Quickstart
 
 ```bash
 npm install
 npm run demo
+npm run inspect
 ```
 
-The demo writes `artifacts/run.json` and `artifacts/run.md`.
+The demo writes:
+
+- `artifacts/run.json`
+- `artifacts/run.md`
+- `artifacts/run-inspector.html`
+
+## Design note
+
+See [docs/design-note-001-observability-scope.md](./docs/design-note-001-observability-scope.md) for the rationale behind keeping observability intentionally small and audit-oriented.
 

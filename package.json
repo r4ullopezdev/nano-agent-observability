@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "demo": "node --import tsx src/cli.ts",
+    "inspect": "node --import tsx src/cli.ts inspect artifacts/run.json",
     "lint": "eslint . --ext .ts",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
@@ -22,4 +23,3 @@
     "vitest": "^3.1.1"
   }
 }
-
