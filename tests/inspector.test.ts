@@ -16,7 +16,10 @@ describe("run inspector", () => {
           level: "info",
           type: "run.started",
           actor: "orchestrator",
-          detail: "Started."
+          detail: "Started.",
+          metadata: {
+            mode: "department-based"
+          }
         }
       ]
     };
@@ -24,5 +27,8 @@ describe("run inspector", () => {
     const html = renderRunInspector(run);
     expect(html).toContain("demo-workflow");
     expect(html).toContain("Event Timeline");
+    expect(html).toContain("Event Breakdown");
+    expect(html).toContain("Actor Map");
+    expect(html).toContain("&quot;mode&quot;");
   });
 });

@@ -17,7 +17,7 @@ Multi-agent systems fail quietly when orchestration is opaque. This package focu
 - markdown and JSON exports
 - audit hooks
 - explicit run status handling
-- minimal HTML run inspector
+- richer HTML run inspector with actor/event breakdowns and metadata panels
 
 ## Quickstart
 
@@ -36,4 +36,3 @@ The demo writes:
 ## Design note
 
 See [docs/design-note-001-observability-scope.md](./docs/design-note-001-observability-scope.md) for the rationale behind keeping observability intentionally small and audit-oriented.
-

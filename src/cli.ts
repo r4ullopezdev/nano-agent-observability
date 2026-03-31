@@ -11,9 +11,19 @@ if (command === "demo") {
   const store = new InMemoryRunStore();
   const run = store.start("demo-run", "department-demo");
 
-  store.append(run.runId, createEvent("run.started", "orchestrator", "Workflow accepted."));
-  store.append(run.runId, createEvent("task.started", "manager", "Delegating work packet."));
-  store.append(run.runId, createEvent("audit.note", "reviewer", "Human checkpoint recorded."));
+  store.append(run.runId, createEvent("run.started", "orchestrator", "Workflow accepted.", { workflowMode: "department-based" }));
+  store.append(
+    run.runId,
+    createEvent("approval.requested", "manager", "Human checkpoint requested before worker execution.", { taskId: "launch-readiness" }, "warn")
+  );
+  store.append(
+    run.runId,
+    createEvent("approval.approved", "reviewer", "Reviewer approved execution.", { reviewer: "ops-lead" })
+  );
+  store.append(
+    run.runId,
+    createEvent("task.started", "manager", "Delegating work packet.", { department: "research" })
+  );
   const finished = store.complete(run.runId, "completed");
 
   const artifactDir = path.resolve("artifacts");
