@@ -15,6 +15,7 @@ Multi-agent systems fail quietly when orchestration is opaque. This package focu
 - run metadata
 - event traces
 - markdown and JSON exports
+- historical run archive export/import
 - audit hooks
 - explicit run status handling
 - richer HTML run inspector with actor/event breakdowns and metadata panels
@@ -32,6 +33,12 @@ The demo writes:
 - `artifacts/run.json`
 - `artifacts/run.md`
 - `artifacts/run-inspector.html`
+
+To combine multiple runs into a simple history file:
+
+```bash
+node --import tsx src/cli.ts archive artifacts/run.json artifacts/run.json
+```
 
 ## Design note
 

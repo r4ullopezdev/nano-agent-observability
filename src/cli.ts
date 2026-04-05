@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { exportRunJson, exportRunMarkdown } from "./exporters.js";
+import { importRunRecord, writeRunHistory } from "./history.js";
 import { writeInspector } from "./inspector.js";
 import { createEvent, toStructuredLog } from "./logger.js";
 import { InMemoryRunStore } from "./runStore.js";
@@ -41,4 +42,16 @@ if (command === "inspect") {
   const outputPath = path.resolve("artifacts", "run-inspector.html");
   writeInspector(run, outputPath);
   console.log(`Inspector written to ${outputPath}`);
+}
+
+if (command === "archive") {
+  const targets = process.argv.slice(3);
+  if (targets.length === 0) {
+    throw new Error("Use: npm run inspect -- archive <run-json> [more run-json paths]");
+  }
+
+  const runs = targets.map((entry) => importRunRecord(entry));
+  const outputPath = path.resolve("artifacts", "run-history.json");
+  writeRunHistory(runs, outputPath);
+  console.log(`Run history written to ${outputPath}`);
 }
